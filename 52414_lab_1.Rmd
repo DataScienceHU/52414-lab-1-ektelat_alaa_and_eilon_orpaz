@@ -151,7 +151,11 @@ Use code blocks and markdown to clearly communicate your work.
   
 Write an interesting research question regarding the Corona outbreak and then follow the steps to answer it using tables and plots. You can use the loaded datasets or any other dataset you find as long as you add the data file to your `lab1` repository so it can be loaded directly from a `url` (e.g. the World Bank). This question will be graded based on creativity, originality, and the novelty of the analysis.   
   
-**Solution:**   
+```{r}
+mo<-read.csv('corona_recovered.csv')
+
+```
+
 
 YOUR SOLUTION HERE.
 Use code blocks and markdown to clearly communicate your work.
