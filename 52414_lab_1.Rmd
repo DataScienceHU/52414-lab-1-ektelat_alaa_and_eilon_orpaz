@@ -349,7 +349,11 @@ mo<- chooseorder$pop65[helv]
   
 Write an interesting research question regarding the Corona outbreak and then follow the steps to answer it using tables and plots. You can use the loaded datasets or any other dataset you find as long as you add the data file to your `lab1` repository so it can be loaded directly from a `url` (e.g. the World Bank). This question will be graded based on creativity, originality, and the novelty of the analysis.   
   
-**Solution:**   
+```{r}
+mo<-read.csv('corona_recovered.csv')
+
+```
+
 
 This database is taken from the Israeli Ministry of Health. It includes data regarding people who recoverd from Coronavirus, such as age groups, gender, how many days passed from the first positive test to the negetive one, and the number of tests they went through in total. 
 We chose to research the recovery time, and whether it depends on age or gender. 
