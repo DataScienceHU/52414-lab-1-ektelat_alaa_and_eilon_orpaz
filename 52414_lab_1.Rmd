@@ -39,8 +39,6 @@ Please write your code in a clear and concise way, with an emphasis on reproduci
   
 The only allowed libraries are the following (**please do not add your own**):
 ```{r, include=FALSE}
-install.packages('data.table')
-install.packages('tidyverse')
 library('tidyverse')
 library('data.table')
 ```  
@@ -71,9 +69,6 @@ cases<- read.csv(url("https://data.humdata.org/hxlproxy/data/download/time_serie
 recoverd<- read.csv(url("https://data.humdata.org/hxlproxy/data/download/time_series_covid19_deaths_global_narrow.csv?dest=data_edit&filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D1326629740%26single%3Dtrue%26output%3Dcsv&merge-keys01=%23country%2Bname&merge-tags01=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&filter02=merge&merge-url02=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D398158223%26single%3Dtrue%26output%3Dcsv&merge-keys02=%23adm1%2Bname&merge-tags02=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&merge-replace02=on&merge-overwrite02=on&filter03=explode&explode-header-att03=date&explode-value-att03=value&filter04=rename&rename-oldtag04=%23affected%2Bdate&rename-newtag04=%23date&rename-header04=Date&filter05=rename&rename-oldtag05=%23affected%2Bvalue&rename-newtag05=%23affected%2Binfected%2Bvalue%2Bnum&rename-header05=Value&filter06=clean&clean-date-tags06=%23date&filter07=sort&sort-tags07=%23date&sort-reverse07=on&filter08=sort&sort-tags08=%23country%2Bname%2C%23adm1%2Bname&tagger-match-all=on&tagger-default-tag=%23affected%2Blabel&tagger-01-header=province%2Fstate&tagger-01-tag=%23adm1%2Bname&tagger-02-header=country%2Fregion&tagger-02-tag=%23country%2Bname&tagger-03-header=lat&tagger-03-tag=%23geo%2Blat&tagger-04-header=long&tagger-04-tag=%23geo%2Blon&header-row=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FCSSEGISandData%2FCOVID-19%2Fmaster%2Fcsse_covid_19_data%2Fcsse_covid_19_time_series%2Ftime_series_covid19_deaths_global.csv"),comment.char = '#')
 dethes<- read.csv(url("https://data.humdata.org/hxlproxy/data/download/time_series_covid19_recovered_global_narrow.csv?dest=data_edit&filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D1326629740%26single%3Dtrue%26output%3Dcsv&merge-keys01=%23country%2Bname&merge-tags01=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&filter02=merge&merge-url02=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D398158223%26single%3Dtrue%26output%3Dcsv&merge-keys02=%23adm1%2Bname&merge-tags02=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&merge-replace02=on&merge-overwrite02=on&filter03=explode&explode-header-att03=date&explode-value-att03=value&filter04=rename&rename-oldtag04=%23affected%2Bdate&rename-newtag04=%23date&rename-header04=Date&filter05=rename&rename-oldtag05=%23affected%2Bvalue&rename-newtag05=%23affected%2Binfected%2Bvalue%2Bnum&rename-header05=Value&filter06=clean&clean-date-tags06=%23date&filter07=sort&sort-tags07=%23date&sort-reverse07=on&filter08=sort&sort-tags08=%23country%2Bname%2C%23adm1%2Bname&tagger-match-all=on&tagger-default-tag=%23affected%2Blabel&tagger-01-header=province%2Fstate&tagger-01-tag=%23adm1%2Bname&tagger-02-header=country%2Fregion&tagger-02-tag=%23country%2Bname&tagger-03-header=lat&tagger-03-tag=%23geo%2Blat&tagger-04-header=long&tagger-04-tag=%23geo%2Blon&header-row=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FCSSEGISandData%2FCOVID-19%2Fmaster%2Fcsse_covid_19_data%2Fcsse_covid_19_time_series%2Ftime_series_covid19_recovered_global.csv"),comment.char = '#')
 
-library(data.table)
-library(tidyverse)
-
 #b
 cases$Date=as.Date(cases$Date)
 cases.agg1<-aggregate(Value ~ Country.Region+Date,data=cases,FUN=sum)
@@ -94,7 +89,6 @@ scases<-acases %>% inner_join (cases.agg,by=c("Country.Region","Date"),by.x="cas
  adeaths<- dethes %>% group_by(Country.Region,Date) %>% summarise(deathsValue=sum(Value))
 sdeaths<-adeaths%>% inner_join (deaths.agg,by=c("Country.Region","Date"),by.x="deathsValue",by.y="value")
 head(deaths.agg)
-
 
 arecovered<- recoverd %>% group_by(Country.Region,Date) %>% summarise(recoveredValue=sum(Value))
 srecovered<-arecovered %>% inner_join (recovered.agg,by=c("Country.Region","Date"),by.x="recoveredValue",by.y="value")
@@ -117,7 +111,7 @@ remarchtop10<-marchtop10 %>% select (Country.Region ,sickvalue,deathsValue,recov
 marchtop10.t<-t(marchtop10)
 colnames(marchtop10.t)<-marchtop10$Country.Region
 marchtop10.t<-marchtop10.t[c(2:4),]
-barplot(marchtop10.t)
+barplot(marchtop10.t,main="sick,recovered,dethes in top 10 country ",legend=rownames(marchtop10.t),col=c("red","green","blue"))
 ```
   
 **Solution:**  
@@ -190,31 +184,36 @@ print(head(try2,10))
 italy<-cases.agg[which(cases.agg$Country.Region =='Italy'),] %>% inner_join (deaths.agg[which(deaths.agg$Country.Region =='Italy'),],by=c("Country.Region","Date"),)
   
 plot(x=italy$Date, y= italy$diff.x,
-    main= "italy", 
-    sub = "subtitle",
+    main= "italy daily number of sick and deaths", 
     xlab= "dates",
-    ylab= "number",
+    ylab= "daily number",
     col= "blue")
-points(x=italy$Date, y= italy$diff.y, main= "italy", 
-    sub = "subtitle",
+points(x=italy$Date, y= italy$diff.y, 
+    main= "italy", 
     xlab= "dates",
-    ylab= "number",
+    ylab= "daily number",
     col= "red")
+legend("topleft",c("sick","deaths"),fill=c("blue","red"))
+
 
 #d
 plot(x=italy$Date, y= log(italy$diff.x),
-    main= "italy", 
-    sub = "subtitle",
+    main= ("italy daily log number of sick and number of deaths"), 
     xlab= "dates",
-    ylab= "number",
+    ylab= "log number",
     col= "blue")
-points(x=italy$Date, y= italy$diff.y, main= "italy", 
-    sub = "subtitle",
+points(x=italy$Date, y= italy$diff.y, 
+    main= "italy", 
     xlab= "dates",
-    ylab= "number",
+    ylab= "daily number",
     col= "red")
+legend("topleft",c("log sick","deaths"),fill=c("blue","red"))
 
 ```
+#### Q2 answer 
+In Q2.c we made a plot showing daily new corona cases (of people infected with the virus) and daily deaths. It shows that both curves grow exponentially, but the new cases (the blue curve, first plot) grow faster. 
+In Q2.d we tried to have a better understanding of the differences between the 2 curves. In order to do so, we used a logarithmic scale. Now, as the death curve was flattened (red curve, second plot) we were able to see that the growth of new cases VS deaths (blue curve, second plot) is a concave curve which is still very high, but becomes more stable as time passes.  
+
 <br/><br/>
 
 
@@ -230,8 +229,6 @@ The rest of the columns should be the features with their respective values in e
 c. Select and rename the following columns: `country` as country, `GDP(US currency)` as GDP, `Population ages 65 and above (% of total population)` as pop65, `Population in the largest city (% of urban population)` as pop_city_ratio, `Population, total` as pop_total columns .  (2pts) 
 d. Show a table of the five countries with the highest per capita GDP in 2018.     
 Next (considering all countries), plot the % of population over 65 vs. log of GDP per capita in 2018, after excluding the 10% countries with the lowest GDP per capita. Using `lm` and `abline`, add a regression line to the plot. What is your conclusion? (13 pts)  
-  
-  
   
 **Solution:** 
 
@@ -256,26 +253,26 @@ eco <- rename(eco, GDP = `GDP (current US$)`)
 eco <- rename(eco, pop65 = `Population ages 65 and above (% of total population)`)
 eco <- rename(eco, pop_city_ratio = `Population in the largest city (% of urban population)`)
 eco <- rename(eco, pop_total = `Population, total`)
+
 #d
 eco <- eco %>% mutate(GDP_per_capita = as.numeric(GDP / pop_total)) 
 eco_data_new <- eco[order(eco$GDP_per_capita, decreasing = TRUE),]
 head(eco_data_new,5)
 
-eco_data_new <- head(eco_data_new , as.integer(265*0.9))
+eco_data_new <- head(eco_data_new , as.integer(264*0.9))
 plot(x= eco_data_new$pop65, 
      y= log(eco_data_new$GDP_per_capita) , 
      col = "black" , 
-     main = "log GDP per capita VS old population" ,
+     main = "log GDP per capita VS % of olded population" ,
      ylab = "log GDP per capita" ,
-     xlab = "old population") 
-abline(lm(log(eco_data_new$GDP_per_capita) ~ eco_data_new$pop65, data = eco_data_new) ,col="red")
-
-
+     xlab = "%of olded population") 
+abline(lm(log(eco_data_new$GDP_per_capita) ~ eco_data_new$pop65, data = eco_data_new) ,col="red")   
 
 ```
-
-YOUR SOLUTION HERE.
-Use code blocks and markdown to clearly communicate your work.
+#### Q3.d explanition 
+The graph describes how GDP per capita changes in accordance with the precentage of older population per country, using logarithmic scale. The age for "older" was set to 65 and above, since this is the age for retirement in most countries. The log of the GDP per capita in this graph was chosen as it presents a relatively good perspective of the economy's state of the countries. 
+It can be learned from the plot that countries with higher GDP per capita can support any rate of older population, while in countries with a lower GDP per capita (less then 8) the rate of older population is 7% or less. 
+This can be explained by the social idea that a country should support the older pepole who were mostly productive workers during their younger lives and are now retired. Countries with smaller GDP per capita might not be able to support their older population due to lack of economic stability and strength. 
 
 <br/><br/>  
 
@@ -292,14 +289,9 @@ Using the last day of March as a reference, create a single stacked bar plot tha
 how is it different from the graph before normalization? (5pts)
 d. Using the last day of March as a reference, create a scatter-plot of normalized deaths and cases vs. `pop65`. Limit the plot to show only countries with 15% or more of `pop65`.   
 In addition, color the outliers( pop65>24, norm100K_deaths>15) in that plot in red and add to the plot their country names (7pts)
-  
-  
+
 **Solution:**   
 
-YOUR SOLUTION HERE.
-Use code blocks and markdown to clearly communicate your work.
-
-<br/><br/>  
 ```{r}
 #a
 corona<-cases.agg %>% inner_join (deaths.agg,by=c("Country.Region","Date"),) %>% rename(diffcases=diff.x , diffdeaths= diff.y , valuecases=Value.x ,valuedeaths=Value.y)
@@ -325,30 +317,30 @@ sdremarchtop10<-sdmarchtop10 %>% select (Country.Region ,sdcases,sdeaths,sdrecov
 sdmarchtop10.t<-t(sdremarchtop10)
 colnames(sdmarchtop10.t)<-sdremarchtop10$Country.Region
 sdmarchtop10.t<-sdmarchtop10.t[c(2:4),]
-barplot(sdmarchtop10.t)
+barplot(sdmarchtop10.t,main=" normalized sick,recovered,dethes in top 10 country ordered by sick normaliztion ",legend=rownames(sdmarchtop10.t),col=c("red","green","blue"))
+
 
 #d
-
+helv<-which(chooseorder$sdeaths>15 & chooseorder$pop65>15 | chooseorder$pop65>24)
 plot(x=chooseorder$pop65, y= chooseorder$sdcases,
     main= "corona cases & deaths VS % of older population", 
     xlab= "% of older population",
     ylab= "normalized corona cases",
     xlim=c(15,28),
-    col= "blue")
+    ylim=c(0,200),
+    col= ifelse (chooseorder$pop65<24,"blue","red"))
 points(x=chooseorder$pop65, y= chooseorder$sdeaths, main= "italy", 
     xlab= "% of older population",
     ylab= "normalized corona deaths",
     xlim=c(15,28),
-    col = ifelse(chooseorder$sdeaths <= 15,'green','red'))
+    ylim=c(0,200),
+    col = ifelse(chooseorder$sdeaths <= 15 | chooseorder$pop65<15,'green','red'))
+text(chooseorder$pop65[helv],chooseorder$sdeaths[helv],labels=chooseorder$Country.Region[helv])
 
-
-
-
-
+mo<- chooseorder$pop65[helv]
 ```
 
-
-
+<br/><br/>  
 
 
 ### Q5
@@ -359,7 +351,34 @@ Write an interesting research question regarding the Corona outbreak and then fo
   
 **Solution:**   
 
-YOUR SOLUTION HERE.
-Use code blocks and markdown to clearly communicate your work.
+This database is taken from the Israeli Ministry of Health. It includes data regarding people who recoverd from Coronavirus, such as age groups, gender, how many days passed from the first positive test to the negetive one, and the number of tests they went through in total. 
+We chose to research the recovery time, and whether it depends on age or gender. 
+In order to study it, we made 3 boxplots: one for the female group, one for the male group and the third showing the total for both together. The axes show the number of days which passed between the positive to the negetive test by age groups. 
+As we can see, the plots show that the median is about the same for all age groups, which brings us to the conclusion that the healing period length does not distinctly depends on age. 
+Notice that the variance of time for recovery is smaller in the male plot for all age groups. 
+
+```{r}
+tests_data <- read.csv('corona_recovered.csv')
+tests_data$days_between_pos_and_neg <- as.numeric(tests_data$days_between_pos_and_neg)
+tests_data <- subset(tests_data, days_between_pos_and_neg < 40 )
+tests_data <- tests_data[order(tests_data$days_between_pos_and_neg, decreasing = TRUE),]
+
+plot(tests_data$days_between_pos_and_neg ~ tests_data$age_group, 
+        sub = "total", 
+        xlab = "ages groups", 
+        ylab = "days for recovering") 
+
+female_tests <- subset(tests_data, gender == "female")
+plot(female_tests$days_between_pos_and_neg ~ female_tests$age_group, 
+        sub = "female", 
+        xlab = "ages groups", 
+        ylab = "days for recovering") 
+
+male_tests <- subset(tests_data, gender == "male")
+plot(male_tests$days_between_pos_and_neg ~ male_tests$age_group, 
+        sub = "male", 
+        xlab = "ages groups", 
+        ylab = "days for recovering") 
+```
 
 <br/><br/>  
