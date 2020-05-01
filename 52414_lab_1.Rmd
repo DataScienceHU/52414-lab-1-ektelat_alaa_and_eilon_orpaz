@@ -71,6 +71,9 @@ cases<- read.csv(url("https://data.humdata.org/hxlproxy/data/download/time_serie
 recoverd<- read.csv(url("https://data.humdata.org/hxlproxy/data/download/time_series_covid19_deaths_global_narrow.csv?dest=data_edit&filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D1326629740%26single%3Dtrue%26output%3Dcsv&merge-keys01=%23country%2Bname&merge-tags01=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&filter02=merge&merge-url02=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D398158223%26single%3Dtrue%26output%3Dcsv&merge-keys02=%23adm1%2Bname&merge-tags02=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&merge-replace02=on&merge-overwrite02=on&filter03=explode&explode-header-att03=date&explode-value-att03=value&filter04=rename&rename-oldtag04=%23affected%2Bdate&rename-newtag04=%23date&rename-header04=Date&filter05=rename&rename-oldtag05=%23affected%2Bvalue&rename-newtag05=%23affected%2Binfected%2Bvalue%2Bnum&rename-header05=Value&filter06=clean&clean-date-tags06=%23date&filter07=sort&sort-tags07=%23date&sort-reverse07=on&filter08=sort&sort-tags08=%23country%2Bname%2C%23adm1%2Bname&tagger-match-all=on&tagger-default-tag=%23affected%2Blabel&tagger-01-header=province%2Fstate&tagger-01-tag=%23adm1%2Bname&tagger-02-header=country%2Fregion&tagger-02-tag=%23country%2Bname&tagger-03-header=lat&tagger-03-tag=%23geo%2Blat&tagger-04-header=long&tagger-04-tag=%23geo%2Blon&header-row=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FCSSEGISandData%2FCOVID-19%2Fmaster%2Fcsse_covid_19_data%2Fcsse_covid_19_time_series%2Ftime_series_covid19_deaths_global.csv"),comment.char = '#')
 dethes<- read.csv(url("https://data.humdata.org/hxlproxy/data/download/time_series_covid19_recovered_global_narrow.csv?dest=data_edit&filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D1326629740%26single%3Dtrue%26output%3Dcsv&merge-keys01=%23country%2Bname&merge-tags01=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&filter02=merge&merge-url02=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vTglKQRXpkKSErDiWG6ycqEth32MY0reMuVGhaslImLjfuLU0EUgyyu2e-3vKDArjqGX7dXEBV8FJ4f%2Fpub%3Fgid%3D398158223%26single%3Dtrue%26output%3Dcsv&merge-keys02=%23adm1%2Bname&merge-tags02=%23country%2Bcode%2C%23region%2Bmain%2Bcode%2C%23region%2Bsub%2Bcode%2C%23region%2Bintermediate%2Bcode&merge-replace02=on&merge-overwrite02=on&filter03=explode&explode-header-att03=date&explode-value-att03=value&filter04=rename&rename-oldtag04=%23affected%2Bdate&rename-newtag04=%23date&rename-header04=Date&filter05=rename&rename-oldtag05=%23affected%2Bvalue&rename-newtag05=%23affected%2Binfected%2Bvalue%2Bnum&rename-header05=Value&filter06=clean&clean-date-tags06=%23date&filter07=sort&sort-tags07=%23date&sort-reverse07=on&filter08=sort&sort-tags08=%23country%2Bname%2C%23adm1%2Bname&tagger-match-all=on&tagger-default-tag=%23affected%2Blabel&tagger-01-header=province%2Fstate&tagger-01-tag=%23adm1%2Bname&tagger-02-header=country%2Fregion&tagger-02-tag=%23country%2Bname&tagger-03-header=lat&tagger-03-tag=%23geo%2Blat&tagger-04-header=long&tagger-04-tag=%23geo%2Blon&header-row=1&url=https%3A%2F%2Fraw.githubusercontent.com%2FCSSEGISandData%2FCOVID-19%2Fmaster%2Fcsse_covid_19_data%2Fcsse_covid_19_time_series%2Ftime_series_covid19_recovered_global.csv"),comment.char = '#')
 
+library(data.table)
+library(tidyverse)
+
 #b
 cases$Date=as.Date(cases$Date)
 cases.agg1<-aggregate(Value ~ Country.Region+Date,data=cases,FUN=sum)
@@ -236,6 +239,39 @@ Next (considering all countries), plot the % of population over 65 vs. log of GD
 #loading the `eco_data`:
 eco_data <- read.csv(url("https://raw.githubusercontent.com/DataScienceHU/DataAnalysisR_2020/master/data/economic_data.csv"))
 
+eco_data <- rename(eco_data, country = Country.Name )
+eco_data <- rename(eco_data, S_country = Country.Code )
+eco_data <- rename(eco_data, feature = Series.Name )
+eco_data <- rename(eco_data, feature_code = Series.Code )
+eco_data <- rename(eco_data, Y2018V = X2018..YR2018. )
+eco_data <- rename(eco_data, Y2019V = X2019..YR2019. )
+
+
+eco_data_new <- eco_data[c(1:2640) , c(1,3,5) ]
+eco_data_new$Y2018V <- as.numeric(as.character(eco_data_new$Y2018V)) 
+eco <- dcast(eco_data_new, country~feature, value.var ="Y2018V")
+#c
+eco <- rename(eco, country = country )
+eco <- rename(eco, GDP = `GDP (current US$)`)
+eco <- rename(eco, pop65 = `Population ages 65 and above (% of total population)`)
+eco <- rename(eco, pop_city_ratio = `Population in the largest city (% of urban population)`)
+eco <- rename(eco, pop_total = `Population, total`)
+#d
+eco <- eco %>% mutate(GDP_per_capita = as.numeric(GDP / pop_total)) 
+eco_data_new <- eco[order(eco$GDP_per_capita, decreasing = TRUE),]
+head(eco_data_new,5)
+
+eco_data_new <- head(eco_data_new , as.integer(265*0.9))
+plot(x= eco_data_new$pop65, 
+     y= log(eco_data_new$GDP_per_capita) , 
+     col = "black" , 
+     main = "log GDP per capita VS old population" ,
+     ylab = "log GDP per capita" ,
+     xlab = "old population") 
+abline(lm(log(eco_data_new$GDP_per_capita) ~ eco_data_new$pop65, data = eco_data_new) ,col="red")
+
+
+
 ```
 
 YOUR SOLUTION HERE.
@@ -264,6 +300,54 @@ YOUR SOLUTION HERE.
 Use code blocks and markdown to clearly communicate your work.
 
 <br/><br/>  
+```{r}
+#a
+corona<-cases.agg %>% inner_join (deaths.agg,by=c("Country.Region","Date"),) %>% rename(diffcases=diff.x , diffdeaths= diff.y , valuecases=Value.x ,valuedeaths=Value.y)
+corona<-corona %>% inner_join (recovered.agg,by=c("Country.Region","Date"),)
+
+#b
+eco$Country.Region<-as.character(eco$Country.Region)
+corona$Country.Region<-as.character(corona$Country.Region)
+eco <- rename(eco, Country.Region = country )
+ecocorona<-corona %>% left_join(eco,by="Country.Region")
+
+#c
+ecocorona<- ecocorona %>% mutate(sdcases=as.numeric(ecocorona$valuecases*100000/ecocorona$pop_total),sdeaths=as.numeric(ecocorona$valuedeaths*100000/ecocorona$pop_total),sdrecovered=as.numeric(ecocorona$Value*100000/ecocorona$pop_total))
+
+ecocoronamarch <- ecocorona[which(ecocorona$Date == "2020-03-31"),]
+
+
+chooseorder<-ecocoronamarch[order(ecocoronamarch$sdcases,decreasing =TRUE ),]
+sdmarchtop10<-chooseorder[1:10,]
+sdmarchtop10<-sdmarchtop10[,c(1,19:21)]
+head(sdmarchtop10)
+sdremarchtop10<-sdmarchtop10 %>% select (Country.Region ,sdcases,sdeaths,sdrecovered)
+sdmarchtop10.t<-t(sdremarchtop10)
+colnames(sdmarchtop10.t)<-sdremarchtop10$Country.Region
+sdmarchtop10.t<-sdmarchtop10.t[c(2:4),]
+barplot(sdmarchtop10.t)
+
+#d
+
+plot(x=chooseorder$pop65, y= chooseorder$sdcases,
+    main= "corona cases & deaths VS % of older population", 
+    xlab= "% of older population",
+    ylab= "normalized corona cases",
+    xlim=c(15,28),
+    col= "blue")
+points(x=chooseorder$pop65, y= chooseorder$sdeaths, main= "italy", 
+    xlab= "% of older population",
+    ylab= "normalized corona deaths",
+    xlim=c(15,28),
+    col = ifelse(chooseorder$sdeaths <= 15,'green','red'))
+
+
+
+
+
+```
+
+
 
 
 
