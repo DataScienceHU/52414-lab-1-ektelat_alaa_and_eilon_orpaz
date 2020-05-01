@@ -10,7 +10,6 @@ output: html_document
   
 
 **Contents**:  
-
 * Q0) [Submission Instructions](#submission-instructions)  
 * Q1) [Data Preparation and Manipulation](#data-preparation-and-manipulation)      
 * Q2) [Analysis of Daily New Corona Cases and Deaths](#analysis-of-daily-new-corona-cases-and-deaths)    
@@ -298,9 +297,9 @@ corona<-cases.agg %>% inner_join (deaths.agg,by=c("Country.Region","Date"),) %>%
 corona<-corona %>% inner_join (recovered.agg,by=c("Country.Region","Date"),)
 
 #b
+eco <- rename(eco, Country.Region = country )
 eco$Country.Region<-as.character(eco$Country.Region)
 corona$Country.Region<-as.character(corona$Country.Region)
-eco <- rename(eco, Country.Region = country )
 ecocorona<-corona %>% left_join(eco,by="Country.Region")
 
 #c
